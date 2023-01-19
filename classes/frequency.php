@@ -720,7 +720,7 @@ class frequency {
      *
      * @return array $events An array of site events
      */
-    public function get_day_ending_events(string $date, string $module='all'): array {
+    public function get_day_ending_events(string $date='', string $module='all'): array {
         global $DB;
         $events = array();
 
