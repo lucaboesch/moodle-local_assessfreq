@@ -23,7 +23,7 @@
 
 define(
     ['jquery', 'core/str', 'core/modal_factory', 'core/modal_events', 'core/fragment', 'core/ajax'],
-    function ($,Str, ModalFactory, ModalEvents, Fragment, Ajax) {
+    function ($,Str, Modal, ModalEvents, Fragment, Ajax) {
 
         /**
          * Module level variables.
@@ -48,13 +48,13 @@ define(
         const createModal = function () {
             Str.get_string('loading', 'local_assessfreq').then((title) => {
                 // Create the Modal.
-                ModalFactory.create({
-                    type: ModalFactory.types.DEFAULT,
+                Modal.create({
+                    type: Modal.types.DEFAULT,
                     title: title,
                     body: spinner,
                     large: true
                 })
-                .done((modal) => {
+                .then((modal) => {
                     modalObj = modal;
                     // Explicitly handle form click events.
                     modalObj.getRoot().on('click', '#id_submitbutton', processModalForm);
