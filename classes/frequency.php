@@ -942,7 +942,7 @@ class frequency {
                       FROM {local_assessfreq_site} s
                  LEFT JOIN {course} c ON s.courseid = c.id
                      WHERE s.module $insql
-                           AND s.endyear = ?";
+                           AND s.endyear = ? ";
 
             $includehiddencourses = get_config('local_assessfreq', 'hiddencourses');
             if (!$includehiddencourses) {
@@ -995,7 +995,7 @@ class frequency {
                 INNER JOIN {local_assessfreq_user} u ON s.id = u.eventid
                 INNER JOIN {course} c ON s.courseid = c.id
                      WHERE s.module $insql
-                           AND s.endyear = ?";
+                           AND s.endyear = ? ";
 
             $includehiddencourses = get_config('local_assessfreq', 'hiddencourses');
             if (!$includehiddencourses) {
@@ -1044,7 +1044,7 @@ class frequency {
             $sql = 'SELECT s.module, COUNT(s.id) as count
                       FROM {local_assessfreq_site} s
                  LEFT JOIN {course} c ON s.courseid = c.id
-                     WHERE s.endyear = ?';
+                     WHERE s.endyear = ? ';
 
             $includehiddencourses = get_config('local_assessfreq', 'hiddencourses');
             if (!$includehiddencourses) {
