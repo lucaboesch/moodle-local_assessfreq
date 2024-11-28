@@ -16,14 +16,13 @@
 /**
  * Javascript for heatmap calendar generation and display.
  *
- * @package    local_assessfreq
  * @copyright  2020 Matt Porritt <mattp@catalyst-au.net>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 define(
-    ['core/str', 'core/notification', 'core/modal_factory', 'local_assessfreq/modal_large', 'core/templates', 'core/ajax'],
-    function (Str, Notification, ModalFactory, ModalLarge, Templates, Ajax) {
+    ['core/str', 'core/notification', 'core/modal', 'local_assessfreq/modal_large', 'core/templates', 'core/ajax'],
+    function (Str, Notification, Modal, ModalLarge, Templates, Ajax) {
 
         /**
          * Module level variables.
@@ -130,6 +129,8 @@ define(
         /**
          * Initialise the base modal to be used.
          *
+         * @param {int} date The date to display the day view for.
+         *
          */
         Dayview.display = function (date) {
             modalObj.setBody(spinner);
@@ -163,7 +164,6 @@ define(
         /**
          * Initialise the base modal to be used.
          *
-         * @param {integer} context The current context id.
          */
         Dayview.init = function () {
             // Load the strings we'll need later.
@@ -189,18 +189,17 @@ define(
                 dayViewTitle = title;
 
                 // Create the Modal.
-                ModalFactory.create({
+                Modal.create({
                     type: ModalLarge.TYPE,
                     title: title,
-                    body: spinner
+                    body: spinner,
+                    large: true
                 })
-                .done((modal) => {
+                .then((modal) => {
                     modalObj = modal;
 
                 });
-            }).catch(() => {
-                Notification.exception(new Error('Failed to load string: loading'));
-            });
+            }).catch(Notification.exception);
 
         };
 

@@ -16,14 +16,13 @@
 /**
  * Javascript for report card display and processing.
  *
- * @package    local_assessfreq
  * @copyright  2020 Matt Porritt <mattp@catalyst-au.net>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 define(
-    ['core/str', 'core/modal_factory', 'core/fragment', 'core/ajax'],
-    function (Str, ModalFactory, Fragment, Ajax) {
+    ['core/str', 'core/modal', 'core/fragment', 'core/ajax', 'core/notification'],
+    function (Str, Modal, Fragment, Ajax, Notification) {
 
         /**
          * Module level variables.
@@ -105,13 +104,13 @@ define(
         const createModal = function () {
             Str.get_string('loading', 'local_assessfreq').then((title) => {
                 // Create the Modal.
-                ModalFactory.create({
-                    type: ModalFactory.types.DEFAULT,
+                Modal.create({
+                    type: Modal.types.DEFAULT,
                     title: title,
                     body: spinner,
                     large: true
                 })
-                .done((modal) => {
+                .then((modal) => {
                     modalObj = modal;
 
                     // Explicitly handle form click events.
@@ -123,9 +122,7 @@ define(
                     });
                 });
                 return;
-            }).catch(() => {
-                Notification.exception(new Error('Failed to load string: loading'));
-            });
+            }).catch(Notification.exception);
         };
 
         const getOptionPlaceholders = function () {
@@ -226,6 +223,10 @@ define(
 
         /**
          * Initialise method for quiz dashboard rendering.
+         *
+         * @param {int} context The context id for the dashboard.
+         * @param {function} processDashboard The callback function to process the dashboard.
+         *
          */
         FormModal.init = function (context, processDashboard) {
             contextid = context;

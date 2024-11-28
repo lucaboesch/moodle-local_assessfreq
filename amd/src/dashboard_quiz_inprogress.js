@@ -17,7 +17,6 @@
  * Javascript for quizzes in progress display and processing.
  *
  * @module     local_assessfreq/dashboard_quiz_inprogress
- * @package    local_assessfreq
  * @copyright  2020 Matt Porritt <mattp@catalyst-au.net>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */

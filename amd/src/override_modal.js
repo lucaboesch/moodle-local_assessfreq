@@ -16,14 +16,13 @@
 /**
  * Javascript for report card display and processing.
  *
- * @package    local_assessfreq
  * @copyright  2020 Matt Porritt <mattp@catalyst-au.net>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 define(
-    ['jquery', 'core/str', 'core/modal_factory', 'core/modal_events', 'core/fragment', 'core/ajax'],
-    function ($,Str, ModalFactory, ModalEvents, Fragment, Ajax) {
+    ['jquery', 'core/str', 'core/modal_factory', 'core/modal_events', 'core/fragment', 'core/ajax', 'core/notification'],
+    function ($,Str, Modal, ModalEvents, Fragment, Ajax, Notification) {
 
         /**
          * Module level variables.
@@ -48,13 +47,13 @@ define(
         const createModal = function () {
             Str.get_string('loading', 'local_assessfreq').then((title) => {
                 // Create the Modal.
-                ModalFactory.create({
-                    type: ModalFactory.types.DEFAULT,
+                Modal.create({
+                    type: Modal.types.DEFAULT,
                     title: title,
                     body: spinner,
                     large: true
                 })
-                .done((modal) => {
+                .then((modal) => {
                     modalObj = modal;
                     // Explicitly handle form click events.
                     modalObj.getRoot().on('click', '#id_submitbutton', processModalForm);
@@ -73,8 +72,9 @@ define(
         /**
          * Updates the body of the modal window.
          *
-         * @param {Object} formdata
-         * @private
+         * @param {int} quiz The quiz id.
+         * @param {int} user The user id.
+         * @param {object} formdata The form data.
          */
         const updateModalBody = function (quiz, user, formdata) {
             if (typeof formdata === "undefined") {
@@ -146,6 +146,10 @@ define(
 
         /**
          * Display the Modal form.
+         *
+         * @param {int} quiz The quiz id.
+         * @param {int} user The user id.
+         * @param {int} hours The hours to filter the quiz by.
          */
         OverrideModal.displayModalForm = function (quiz, user, hours = null) {
             quizid = quiz;
@@ -157,6 +161,10 @@ define(
 
         /**
          * Initialise method for quiz dashboard rendering.
+         *
+         * @param {int} context The context id for the dashboard.
+         * @param {function} callbackFunction The callback function to call after the modal is closed.
+         * @param {int} hours The hours to filter the quiz by.
          */
         OverrideModal.init = function (context, callbackFunction, hours = null) {
             contextid = context;

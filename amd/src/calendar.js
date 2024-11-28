@@ -16,7 +16,6 @@
 /**
  * Javascript for heatmap calendar generation and display.
  *
- * @package    local_assessfreq
  * @copyright  2020 Matt Porritt <mattp@catalyst-au.net>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -59,7 +58,7 @@ define(['core/str', 'core/notification', 'core/ajax'], function (Str, Notificati
     /**
      * Pick a contrasting text color based on the background color.
      *
-     * @param  {String} A hexcolor value.
+     * @param  {String} hexcolor A hexcolor value.
      * @return {String} The contrasting color (black or white).
      */
     const getContrast = function (hexcolor) {
@@ -218,9 +217,12 @@ define(['core/str', 'core/notification', 'core/ajax'], function (Str, Notificati
      * Get the events to display in the calendar via ajax call.
      *
      * @method getEvents
-     * @param {Number} year The year to get the events for.
-     * @param {String} metric The type of metric to get, 'students' or 'assess'.
-     * @param {Array} modules Array of the modules to get.
+     *
+     * @param {Object} args The arguments to pass to the ajax call.
+     * @param {Number} args.year The year to get the events for.
+     * @param {String} args.metric The metric to get the events for.
+     * @param {Array} args.modules The modules to get the events for.
+     *
      * @return {Promise}
      */
     const getEvents = function ({year, metric, modules}) {
@@ -267,9 +269,11 @@ define(['core/str', 'core/notification', 'core/ajax'], function (Str, Notificati
     /**
      * Create the table structure for the calendar months.
      *
-     * @oaram {Number} year The year to generate the tables for.
-     * @param {Number} startMonth The month to start table generation from.
-     * @param {Number} endMonth The month to generate the tables to.
+     * @param {Object} args The arguments to pass to the ajax call.
+     * @param {Number} args.year The year to get the events for.
+     * @param {Number} args.startMonth The month to start the calendar
+     * @param {Number} args.endMonth The month to end the calendar
+     *
      * @return {Promise}
      */
     const createTables = function ({year, startMonth, endMonth}) {
@@ -403,9 +407,11 @@ define(['core/str', 'core/notification', 'core/ajax'], function (Str, Notificati
     /**
      * Controls the population of the calendar in to the base tables.
      *
-     * @param {Object} calendarContainer the container to populate.
-     * @param {Number} year The year to generate calendar for.
-     * @param {Number} startMonth The month to start generation from.
+     * @param {Object} args The arguments to pass to the ajax call.
+     * @param {Object} args.calendarContainer The container to populate the calendar into.
+     * @param {Number} args.year The year to get the events for.
+     * @param {Number} args.startMonth The month to start the calendar
+     *
      * @return {Promise}
      */
     const populateCalendar = function ({calendarContainer, year, startMonth}) {

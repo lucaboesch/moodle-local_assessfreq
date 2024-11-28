@@ -91,7 +91,8 @@ Feature: Assessment frequency
     And I click on "Select year" "button" in the "local-assessfreq-report-heatmap" "region"
     And I click on "2022" "link" in the "local-assessfreq-heatmap-year" "region"
     And I click on "td[data-date='2022-1-1']" "css_element"
-    Then the following should exist in the "Title" table:
+    Then the following should exist in the "report-dayview-table" table:
+     | Title                         |
      | Assignment: Test assignment 1 |
      | Choice: Test choice 1         |
      | Database: Test database 1     |

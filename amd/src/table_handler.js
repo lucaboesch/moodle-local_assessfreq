@@ -17,7 +17,6 @@
  * Table handler JS module.
  *
  * @module     local_assessfreq/table_handler
- * @package    local_assessfreq
  * @copyright  2020 Guillermo Gomez <guillermogomez@catalyst-au.net>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -238,6 +237,8 @@ const tableReset = (event) => {
 
 /**
  * Process the search events from the student table.
+ *
+ * @param {Event} event The triggered event for the element.
  *
  */
 export const tableSearch = (event) => {
