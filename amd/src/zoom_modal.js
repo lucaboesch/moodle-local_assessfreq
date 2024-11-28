@@ -16,7 +16,6 @@
 /**
  * Javascript for report card display and processing.
  *
- * @package    local_assessfreq
  * @copyright  2020 Matt Porritt <mattp@catalyst-au.net>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -38,6 +37,10 @@ define(
 
         /**
          * Provides zoom functionality for card graphs.
+         *
+         * @param {object} event The event object.
+         * @param {object} params The parameters for the fragment call.
+         * @param {string} method The method to call in the fragment.
          */
         ZoomModal.zoomGraph = function (event, params, method) {
             let title = event.target.parentElement.dataset.title;
@@ -76,7 +79,7 @@ define(
          * @private
          */
         const createModal = function () {
-            return new Promise((resolve, reject) => {
+            return new Promise((resolve) => {
                 Str.get_string('loading', 'core').then((title) => {
                     // Create the Modal.
                     Modal.create({
@@ -95,6 +98,8 @@ define(
 
         /**
          * Initialise method for quiz dashboard rendering.
+         *
+         * @param {int} context The context id for the dashboard.
          */
         ZoomModal.init = function (context) {
             contextid = context;

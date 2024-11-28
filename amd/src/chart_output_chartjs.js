@@ -16,7 +16,6 @@
 /**
  * Chart output for chart.js with custom override for aspect config.
  *
- * @package    local_assessfreq
  * @copyright  2020 Matt Porritt <mattp@catalyst-au.net>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -33,7 +32,6 @@ define(['core/chart_output_chartjs'], function (Output) {
      * Overrride the config.
      *
      * @protected
-     * @param {module:core/chart_axis} axis The axis.
      * @return {Object} The axis config.
      */
     Output.prototype._makeConfig = function () {
@@ -103,6 +101,11 @@ define(['core/chart_output_chartjs'], function (Output) {
 
     /**
      * Get the aspect ratio setting and initialise the chart.
+     *
+     * @param {string} chartImage The image to replace.
+     * @param {object} ChartInst The chart instance.
+     * @param {boolean} aspect The aspect ratio.
+     * @param {object} legend The legend options.
      */
     ChartOutput.init = function (chartImage, ChartInst, aspect, legend) {
         aspectRatio = aspect;

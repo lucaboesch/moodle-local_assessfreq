@@ -17,7 +17,6 @@
  * User preferences JS module.
  *
  * @module     local_assessfreq/user_preferences
- * @package    local_assessfreq
  * @copyright  2020 Guillermo Gomez <guillermogomez@catalyst-au.net>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */

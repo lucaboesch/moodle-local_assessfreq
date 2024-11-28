@@ -16,7 +16,6 @@
 /**
  * Javascript for heatmap calendar generation and display.
  *
- * @package    local_assessfreq
  * @copyright  2020 Matt Porritt <mattp@catalyst-au.net>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -130,6 +129,8 @@ define(
         /**
          * Initialise the base modal to be used.
          *
+         * @param {int} date The date to display the day view for.
+         *
          */
         Dayview.display = function (date) {
             modalObj.setBody(spinner);
@@ -163,7 +164,6 @@ define(
         /**
          * Initialise the base modal to be used.
          *
-         * @param {integer} context The current context id.
          */
         Dayview.init = function () {
             // Load the strings we'll need later.

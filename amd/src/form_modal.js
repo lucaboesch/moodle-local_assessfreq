@@ -16,14 +16,13 @@
 /**
  * Javascript for report card display and processing.
  *
- * @package    local_assessfreq
  * @copyright  2020 Matt Porritt <mattp@catalyst-au.net>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 define(
-    ['core/str', 'core/modal', 'core/fragment', 'core/ajax'],
-    function (Str, Modal, Fragment, Ajax) {
+    ['core/str', 'core/modal', 'core/fragment', 'core/ajax', 'core/notification'],
+    function (Str, Modal, Fragment, Ajax, Notification) {
 
         /**
          * Module level variables.
@@ -224,6 +223,10 @@ define(
 
         /**
          * Initialise method for quiz dashboard rendering.
+         *
+         * @param {int} context The context id for the dashboard.
+         * @param {function} processDashboard The callback function to process the dashboard.
+         *
          */
         FormModal.init = function (context, processDashboard) {
             contextid = context;
